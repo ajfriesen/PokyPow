@@ -1,0 +1,46 @@
+esphome:
+  name: pc-switch
+  platform: ESP8266
+  board: nodemcuv2
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+# Put ota password here
+ota:
+  password: ""
+
+# Your wifi config
+wifi:
+  # ssid: ""
+  # password: ""
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "PC-Switch Fallback Hotspot"
+    password: "fallback-wifi"
+
+captive_portal:
+
+switch:
+  - platform: gpio
+    pin: D6
+    id: power
+    name: "Power toogle"
+    icon: "mdi:PC"
+    on_turn_on:
+    - delay: 300ms
+    - switch.turn_off: power
+
+  - platform: gpio
+    pin: D6
+    id: force_power
+    name: "Force power off"
+    icon: "mdi:PC"
+    on_turn_on:
+    - delay: 5000ms
+    - switch.turn_off: force_power
+    
