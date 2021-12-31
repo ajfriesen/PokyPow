@@ -4,15 +4,16 @@
 
 ESPHome powered switch to turn on/off your PC.
 
-Just connect your power and reset front panel connector to appropieate pin pairs, power the ESP8266 and you can turn on and off your PC via home assistant.
+![Prototype](images/pc-switch-home-assistant-gui.png)
 
+Just connect your power, reset and power led front panel connector to appropieate pin pairs, power the ESP8266 and you can turn on and off your PC via Home Assistant.
 ## Use cases
 
-- This can enbale voice commands via Google Home.
-- Hide your PC in a closet or on a shelf without the need to press the actual button. Your can just connect any other button via home assistant
+- Hide your PC in a closet or on a shelf without the need to press the actual button. You can just connect any other button via home assistant
 - Setup automation based on time, motion or the moon phase to power on your PC
 - No funky magic packets anymore with wake on LAN (never worked for me)
-- No addons with password access to your Windows PC
+- No addons with admin access (password) to your Windows PC
+- Add voice commands via Home Assistant to Google Assistant
 
 ## Powersource
 
@@ -41,7 +42,7 @@ Then you can connect power and groud from the TPM header to the ESP8266
 - [x] Power, reset and hard power off switch for PC in Home Assistant
 - [x] Protoype on breadboard
 - [x] Create first soldered protoype
-- [ ] Check for PC status (is the PC currently on or off?) Current design is a power a power toggle
+- [x] Check for PC status
 - [ ] Design PCB
 - [ ] upload PCB
 - [ ] Create 3D printed case
