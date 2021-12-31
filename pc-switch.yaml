@@ -28,19 +28,56 @@ captive_portal:
 switch:
   - platform: gpio
     pin: D6
-    id: power
-    name: "Power toogle"
-    icon: "mdi:PC"
+    id: power_switch
+    internal: true
     on_turn_on:
     - delay: 300ms
-    - switch.turn_off: power
+    - switch.turn_off: power_switch
 
   - platform: gpio
     pin: D6
-    id: force_power
-    name: "Force power off"
-    icon: "mdi:PC"
+    id: power_switch_force
+    internal: true
     on_turn_on:
     - delay: 5000ms
-    - switch.turn_off: force_power
-    
+    - switch.turn_off: power_switch_force
+
+  - platform: gpio
+    pin: D7
+    id: reset_switch
+    on_turn_on:
+    - delay: 300ms
+    - switch.turn_off: reset_switch
+
+binary_sensor:
+  - platform: gpio
+    pin: D0
+    id: pc_power_sensor
+    name: "PC Power State"
+    device_class: power
+    icon: "mdi:desktop-classic"
+
+button:
+  - platform: template
+    name: "PC Power Button"
+    id: power_button
+    icon: "mdi:power-standby"
+    on_press:
+      then:
+        - switch.toggle: power_switch
+
+  - platform: template
+    name: "PC Force Power Off"
+    id: force_power_off
+    icon: "mdi:power-plug-off"
+    on_press:
+      then:
+        - switch.toggle: power_switch_force
+
+  - platform: template
+    name: "PC Reset Button"
+    id: reset_button
+    icon: "mdi:restart"
+    on_press:
+      then:
+        - switch.toggle: reset_switch
