@@ -1,7 +1,16 @@
+substitutions:
+  name: "pc"
+  uppercase_name: "PC"
+
+
 esphome:
-  name: pc-switch
+  name: "${name}"
   platform: ESP8266
   board: nodemcuv2
+
+  project:
+    name: "ajfriesen.pc-switch"
+    version: "1.0.0"
 
 # Enable logging
 logger:
@@ -9,9 +18,11 @@ logger:
 # Enable Home Assistant API
 api:
 
+dashboard_import:
+  package_import_url: github://ajfriesen/pc-switch/pc-switch.yaml@main
+
 # Put ota password here
 ota:
-  password: ""
 
 # Your wifi config
 wifi:
@@ -53,13 +64,13 @@ binary_sensor:
   - platform: gpio
     pin: D0
     id: pc_power_sensor
-    name: "PC Power State"
+    name: "${name} Power State"
     device_class: power
     icon: "mdi:desktop-classic"
 
 button:
   - platform: template
-    name: "PC Power Button"
+    name: "${name} Power Button"
     id: power_button
     icon: "mdi:power-standby"
     on_press:
@@ -67,7 +78,7 @@ button:
         - switch.toggle: power_switch
 
   - platform: template
-    name: "PC Force Power Off"
+    name: "${name} Force Power Off"
     id: force_power_off
     icon: "mdi:power-plug-off"
     on_press:
@@ -75,7 +86,7 @@ button:
         - switch.toggle: power_switch_force
 
   - platform: template
-    name: "PC Reset Button"
+    name: "${name} Reset Button"
     id: reset_button
     icon: "mdi:restart"
     on_press:
