@@ -26,5 +26,4 @@ Just connect your power, reset and power led front panel connector to appropieat
 
 You can find all product documentation, related blog post on my dedicated [pc-switch website](https://www.ajfriesen.com/pc-switch/).
 
-If you have questions you can open a topic on my [forum](https://forum.ajfriesen.com/).
 
