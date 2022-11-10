@@ -1,12 +1,12 @@
 # pc-switch
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/ajfriesen)
+Remote shutdown and start you PC/server with Home Assistant.
 
-ESPHome powered switch to turn on/off your PC and server.
+Powered by ESPHome. 
 
 ![Home Assisant Panel](images/pc-switch-home-assistant-gui.png)
 
-Just connect your power, reset and power led front panel connector to appropieate pin pairs, power the ESP8266 and you can turn on and off your PC via Home Assistant.
+Just connect your power, reset and power led front panel connector to appropriate pin pairs, power the ESP8266 and you can turn on and off your PC via Home Assistant.
 
 ## Use cases
 
