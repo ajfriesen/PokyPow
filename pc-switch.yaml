@@ -4,16 +4,18 @@ substitutions:
 
 
 esphome:
-  name: "${name}"
-  platform: ESP8266
-  board: nodemcuv2
+  # choose your own name
+  name: WakeOnLan
+  friendly_name: PC
+    platform: ESP8266
+  board: d1_mini
 
   project:
     name: "ajfriesen.pc-switch"
-    version: "1.0.0"
+    version: "1.1.0"
 
-# Enable logging
-logger:
+# Enable logging if needed
+logger: null
 
 # Enable Home Assistant API
 api:
@@ -23,22 +25,26 @@ dashboard_import:
 
 # Put ota password here
 ota:
+  safe_mode: true
+  password: ota_password
 
 # Your wifi config
 wifi:
-  # ssid: ""
-  # password: ""
+  ssid: wifi_ssid
+  password: wifi_password
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "PC-Switch Fallback Hotspot"
-    password: "fallback-wifi"
+    password: fallback-wifi
 
 captive_portal:
 
 switch:
   - platform: gpio
-    pin: D6
+    pin: 
+      number: D6
+      allow_other_uses: true
     id: power_switch
     internal: true
     on_turn_on:
@@ -46,7 +52,9 @@ switch:
     - switch.turn_off: power_switch
 
   - platform: gpio
-    pin: D6
+    pin: 
+      number: D6
+      allow_other_uses: true
     id: power_switch_force
     internal: true
     on_turn_on:
@@ -64,31 +72,31 @@ binary_sensor:
   - platform: gpio
     pin: D0
     id: pc_power_sensor
-    name: "${name} Power State"
+    name: Power State
     device_class: power
-    icon: "mdi:desktop-classic"
+    icon: mdi:desktop-classic
 
 button:
   - platform: template
-    name: "${name} Power Button"
+    name: Power Button
     id: power_button
-    icon: "mdi:power-standby"
+    icon: mdi:power-standby
     on_press:
       then:
         - switch.toggle: power_switch
 
   - platform: template
-    name: "${name} Force Power Off"
+    name: Force Power Off
     id: force_power_off
-    icon: "mdi:power-plug-off"
+    icon: mdi:power-plug-off
     on_press:
       then:
         - switch.toggle: power_switch_force
 
   - platform: template
-    name: "${name} Reset Button"
+    name: Reset Button
     id: reset_button
-    icon: "mdi:restart"
+    icon: mdi:restart
     on_press:
       then:
         - switch.toggle: reset_switch
