@@ -10,7 +10,7 @@ esphome:
 
   project:
     name: "ajfriesen.pc-switch"
-    version: "1.0.0"
+    version: "1.0.1"
 
 # Enable logging
 logger:
@@ -38,7 +38,9 @@ captive_portal:
 
 switch:
   - platform: gpio
-    pin: D6
+    pin: 
+      number: D6
+      allow_other_uses: true
     id: power_switch
     internal: true
     on_turn_on:
@@ -46,7 +48,9 @@ switch:
     - switch.turn_off: power_switch
 
   - platform: gpio
-    pin: D6
+    pin: 
+      number: D6
+      allow_other_uses: true
     id: power_switch_force
     internal: true
     on_turn_on:
