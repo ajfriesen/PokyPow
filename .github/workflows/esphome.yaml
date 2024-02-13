@@ -1,0 +1,14 @@
+name: Build Binary
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: esphome/build-action@v1.8.0
+      with:
+        yaml_file: pc-switch.yaml
