@@ -11,7 +11,8 @@ Powered by ESPHome.
 
 ![Home Assistant Panel](images/pokypow-home-assistant-gui.png)
 
-Just connect your power, reset and power led front panel connector to appropriate pin pairs, power the ESP8266 and you can turn on and off your PC via Home Assistant.
+Just connect your power, reset and power led front panel connector to appropriate pin pairs, power the PokyPow via USB-C or an internal USB2.0 header. 
+Now you can turn on/off your PC and check if it is running via Home Assistant.
 
 ## Use cases
 
