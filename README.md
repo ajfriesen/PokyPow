@@ -2,6 +2,11 @@
 
 Remote shutdown and start you PC/server with Home Assistant.
 
+> [!NOTE]  
+> The [Crowdsupply campaign for PokyPow launch site](https://www.crowdsupply.com/ajfriesen/pokypow) is live!
+> We need 200 subscribers in order to go to the next steps.
+> Subscribe and make it real!
+
 Powered by ESPHome.
 
 ![Home Assistant Panel](images/pokypow-home-assistant-gui.png)
