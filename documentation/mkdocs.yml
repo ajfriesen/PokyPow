@@ -1,0 +1,67 @@
+site_name: PokyPow
+site_url: https://pokypow.com
+repo_url: https://github.com/ajfriesen/pokypow
+repo_name: ajfriesen/pokypow
+
+site_author: Andrej Friesen
+site_description: >-
+  PokyPow is a USB-C powered switch that allows you to switch between your PC and your console.
+  It is designed to be used with a USB-C cable and a USB-C power supply.
+
+plugins:
+  - search
+  - awesome-pages
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+
+
+# Color scheme
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+# Extra customization
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ajfriesen
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/mr_ajfriesen
+
+
+
+# Extensions for enhanced markdown
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+extra_javascript:
+  - https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module
+
+extra_css:
+  - stylesheets/extra.css
