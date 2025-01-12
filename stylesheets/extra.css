@@ -1,0 +1,24 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-gap: 1rem;
+    margin: 1rem 0;
+}
+
+.grid.cards > :is(ul, ol) {
+    display: contents;
+}
+
+.grid.cards > :is(ul, ol) > li,
+.grid > .card {
+    border: .05rem solid var(--md-default-fg-color--lightest);
+    border-radius: .5rem;
+    padding: 1rem;
+    transition: border .25s,box-shadow .25s;
+}
+
+.grid.cards > :is(ul, ol) > li:hover,
+.grid > .card:hover {
+    border-color: var(--md-accent-fg-color);
+    box-shadow: var(--md-shadow-z2);
+} 
