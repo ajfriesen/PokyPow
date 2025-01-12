@@ -26,7 +26,7 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - name: Install MkDocs dependencies
-        run: pip install mkdocs-material
+        run: pip install mkdocs-material mkdocs-awesome-pages-plugin
       - name: Deploy MkDocs
         working-directory: ./documentation
         run: mkdocs gh-deploy --force
