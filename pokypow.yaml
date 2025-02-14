@@ -24,8 +24,7 @@ logger:
 
 # Enable Home Assistant API
 api:
-  encryption:
-    key: "JF2lAtubt9VdSATyOL66WJsqe+Sh1hB8HxZx4ck1V5s="
+
   on_client_connected:
     then:
       - light.turn_on:
@@ -47,19 +46,16 @@ ota:
     password: "9a276257164827a77c20a46ee176b36e"
 
 wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-  use_address: 192.168.178.144
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Server Fallback Hotspot"
-    password: "8xAFIJNdv8xb"
+    ssid: "PokyPow Setup"
 
 captive_portal:
   
 web_server:
   port: 80
+
 
 light:
   - platform: neopixelbus
@@ -79,6 +75,10 @@ sensor:
 
 
 switch:
+
+  - platform: factory_reset
+    name: Restart with Factory Default Settings
+  
   - platform: gpio
     pin: 
       number: GPIO7
