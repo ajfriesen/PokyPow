@@ -61,7 +61,9 @@ markdown_extensions:
       emoji_generator: !!python/name:materialx.emoji.to_svg
 
 extra_javascript:
-  - https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module
+  - javascripts/install-button.js
+  - javascripts/install-dialog-CQzvAv3p.js
+
 
 extra_css:
   - stylesheets/extra.css
