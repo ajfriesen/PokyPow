@@ -3,3 +3,6 @@
 .esphome/*
 .python-version
 .env
+documentation/site/*
+documentation/caddy/config/*
+documentation/caddy/data/*
