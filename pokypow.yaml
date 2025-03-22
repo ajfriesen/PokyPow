@@ -1,5 +1,10 @@
+# These substitutions allow the end user to override certain values
+substitutions:
+  devicename: pokypow
+  upper_devicename: PokyPow
+
 esphome:
-  name: pokypow
+  name: "${devicename}"
   friendly_name: PokyPow
   # Automatically add the mac address to the name
   # so you can use a single firmware for all devices
