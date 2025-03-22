@@ -5,8 +5,25 @@ repo_name: ajfriesen/pokypow
 
 site_author: Andrej Friesen
 site_description: >-
-  PokyPow is a USB-C powered switch that allows you to switch between your PC and your console.
-  It is designed to be used with a USB-C cable and a USB-C power supply.
+  PokyPow is a board to power on/off, reset and monitor your PC/server via Home Assistant.
+  It build with ESPHome and does not need any cloud connectivity.
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - getting-started/flashing.md
+      - getting-started/connecting-pc.md
+      - getting-started/usb-always-on.md
+      - getting-started/home-assistant.md
+      - getting-started/webinterface.md
+  - Advanced:
+      - advanced/esphome-builder.md
+      - advanced/3d-printed-cases.md
+      - advanced/no-home-assistant.md
+  - Use Cases:
+    - use-cases.md
+  - About:
+      - about.md
 
 plugins:
   - search
@@ -19,6 +36,7 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.top
+    - navigation.tracking
     - search.suggest
     - search.highlight
 
@@ -62,3 +80,6 @@ markdown_extensions:
 
 extra_css:
   - stylesheets/extra.css
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/chart.js

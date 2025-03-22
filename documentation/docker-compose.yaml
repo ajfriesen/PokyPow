@@ -1,0 +1,27 @@
+services:
+  caddy:
+    image: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/site:/srv
+      - ./caddy/data:/data
+      - ./caddy/config:/config
+
+
+
+  mkdocs:
+    build: .
+    command: build -v
+    volumes:
+      - ./:/docs
+      - ./site:/site
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./
+          target: /site

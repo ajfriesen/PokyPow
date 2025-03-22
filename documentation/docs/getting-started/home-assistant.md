@@ -1,2 +1,2 @@
-# Home Assistant
+# Home Assistant setup
 

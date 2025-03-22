@@ -1,15 +1,19 @@
 # Home
 
-This is the documentation for the PokyPow project.
+The **PokyPow**.
 
-Designed for Home Assistant.
+A board that allows you power on, off, reset, hard reset your PC and check if it is actually running in Home Assistant.
+You can automate whatever you want.
 
+Already got one?
+
+[Getting Started](getting-started/flashing.md){ .md-button }
+
+Still need one? Get it here!
 
 [Buy/Subscribe](https://www.crowdsupply.com/ajfriesen/pokypow){ .md-button .md-button--primary }
-[Getting Started](/setup){ .md-button }
 
 Support me on [Crowd Supply](https://www.crowdsupply.com/ajfriesen/pokypow)!
-
 
 <a href="https://www.crowdsupply.com/ajfriesen/pokypow"><img src="./img/pokypow-pcb-scale-02.jpeg" alt="PokyPow on Crowd Supply"></a>
 <a href="https://www.crowdsupply.com/ajfriesen/pokypow"><img src="./img/crowd-supply-logo-dark.png" alt="I sell on Crowd Supply"></a>
