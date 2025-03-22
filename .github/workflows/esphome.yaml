@@ -1,15 +1,32 @@
-name: Build Binary
+name: Publish Firmware
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
+
+permissions:
+  contents: write
 
 jobs:
-  deploy:
-    runs-on: ubuntu-22.04
-    steps:
-    - uses: actions/checkout@v4
-    - uses: esphome/build-action@v1.8.0
-      with:
-        yaml_file: pokypow.yaml
+  build-firmware:
+    name: Build Firmware
+    uses: esphome/workflows/.github/workflows/build.yml@2025.1.0
+    with:
+      #### Modify below here to match your project ####
+      files: |
+        pokypow.yaml
+      esphome-version: 2025.2.2
+      combined-name: PokyPow
+      #### Modify above here to match your project ####
+
+      release-summary: ${{ github.event.release.body }}
+      release-url: ${{ github.event.release.html_url }}
+      release-version: ${{ github.event.release.tag_name }}
+
+  upload-to-release:
+    name: Upload to Release
+    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.1.0
+    needs:
+      - build-firmware
+    with:
+      version: ${{ github.event.release.tag_name }}
