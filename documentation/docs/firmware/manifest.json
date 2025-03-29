@@ -1,0 +1,16 @@
+{
+    "name": "PokyPow",
+    "version": "2024.12.2",
+    "home_assistant_domain": "esphome",
+    "funding_url": "https://esphome.io/guides/supporters.html",
+    "new_install_prompt_erase": false,
+    "builds": [
+      {
+        "chipFamily": "ESP32-C3",
+        "parts": [
+          { "path": "../firmware/firmware.factory.bin", "offset": 0 }
+        ]
+      }
+    ]
+  }
+  

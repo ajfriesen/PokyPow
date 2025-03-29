@@ -1,6 +1,16 @@
+# These substitutions allow the end user to override certain values
+substitutions:
+  devicename: pokypow
+  upper_devicename: PokyPow
+
 esphome:
-  name: gaming-pokypow
-  friendly_name: gaming-pokypow
+  name: "${devicename}"
+  friendly_name: PokyPow
+  # Automatically add the mac address to the name
+  # so you can use a single firmware for all devices
+  name_add_mac_suffix: true
+
+  # Green light after boot
   on_boot:
     priority: -100  # Lower priority to ensure it runs after boot is complete
     then:
@@ -13,18 +23,11 @@ esphome:
 
 esp32:
   board: esp32-c3-devkitm-1
-  framework:
-    type: arduino
   flash_size: 4MB
-  
-
-# Enable logging
-logger:
-  # level: DEBUG
 
 # Enable Home Assistant API
 api:
-
+  # Blue light after connected to Home Assistant
   on_client_connected:
     then:
       - light.turn_on:
@@ -41,21 +44,41 @@ api:
           green: 100%
           blue: 0
           brightness: 50%
+
+# OTA is required for Over-the-Air updating
 ota:
   - platform: esphome
-    password: "9a276257164827a77c20a46ee176b36e"
+
+# Enable WiFi provisioning via USB/Serial after flashing
+# Logger needs to be set to uart0 for this to work
+improv_serial:
+
+# To be able to get logs from the device via serial and api.
+logger:
+  # Change to the urat controler on board to make improve serial work for WiFi provisioning
+  hardware_uart: uart0
+
+# Sets up Bluetooth LE (Only on ESP32) to allow the user
+# to provision wifi credentials to the device.
+esp32_improv:
+  authorizer: none
 
 wifi:
-
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "PokyPow Setup"
 
+# In combination with the `ap` this allows the user
+# to provision wifi credentials to the device.
 captive_portal:
-  
+
+# 
 web_server:
   port: 80
 
+###
+###  LED, Switchtes, etc.
+###
 
 light:
   - platform: neopixelbus
@@ -166,6 +189,3 @@ button:
     on_press:
       then:
         - switch.toggle: reset_pin
-
-
-

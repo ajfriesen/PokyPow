@@ -1,0 +1,11 @@
+localhost:443 {
+  root * /srv
+  file_server
+  tls internal
+
+    header {
+      Access-Control-Allow-Origin *
+      Access-Control-Allow-Methods "GET, POST, OPTIONS"
+      Access-Control-Allow-Headers "Origin, Content-Type, Accept, Authorization"
+  }
+}
