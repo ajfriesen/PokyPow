@@ -5,6 +5,8 @@ The **PokyPow**.
 A board that allows you power on, off, reset, hard reset your PC and check if it is actually running in Home Assistant.
 You can automate whatever you want.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/iE1ZEnhzESs?si=lcy8MhWU3a7VbOk9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 Already got one?
 
 [Getting Started](getting-started/flashing.md){ .md-button }
