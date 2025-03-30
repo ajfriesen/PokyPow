@@ -85,3 +85,4 @@ extra_css:
 
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/chart.js
+  - js/umami.js
