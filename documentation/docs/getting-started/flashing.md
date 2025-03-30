@@ -24,5 +24,5 @@ No complex tools are needed.
   src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"
 ></script>
 
-<esp-web-install-button manifest="https://localhost/firmware/manifest.json"></esp-web-install-button>
+<esp-web-install-button manifest="../../firmware/manifest.json"></esp-web-install-button>
 
