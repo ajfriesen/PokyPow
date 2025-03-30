@@ -31,6 +31,8 @@ plugins:
 
 theme:
   name: material
+  icon:
+    logo: material/power
   features:
     - navigation.tabs
     - navigation.sections
