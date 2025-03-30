@@ -6,6 +6,7 @@ Easy, we need to flash the firmware.
 But do not worry, everything will be done in the browser.
 No complex tools are needed.
 
+![flashing.gif](../img/flashing.GIF)
 
 
 1. Connect your PokyPow via USB-C to your computer
