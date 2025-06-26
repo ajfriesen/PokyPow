@@ -67,7 +67,9 @@ extra:
     - icon: fontawesome/brands/youtube
       link: https://www.youtube.com/@ajfriesen
 
-
+  analytics:
+    provider: google
+    property: G-ZJP9RETVZR
 
 
 # Extensions for enhanced markdown
