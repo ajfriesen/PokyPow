@@ -104,15 +104,13 @@ web_server:
 ###
 
 light:
-  - platform: neopixelbus
-    type: GRBW
-    variant: SK6812
+  - platform: esp32_rmt_led_strip
+    rgb_order: GRB
+    chipset: SK6812
     pin: GPIO5
     id: led_strip
     num_leds: 1
     name: "Gamer LED"
-    effects:
-      - addressable_rainbow:
 
 # sensor:
 #   - platform: wifi_signal
