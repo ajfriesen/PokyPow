@@ -215,14 +215,16 @@ binary_sensor:
     name: "Power State"
     device_class: running
     icon: "mdi:desktop-classic"
-    on_press:
-      # When the PC turns ON
-      then:
-        - output.turn_on: esp32_led_out_mb
-    on_release:
-    #   # When the PC turns OFF
-      then:
-        - output.turn_off: esp32_led_out_mb
+    on_state:
+      if:
+        condition:
+          # When the PC turns ON
+          binary_sensor.is_on: pc_power_sensor
+        then:
+          - output.turn_on: esp32_led_out_mb
+          # When the PC turns OFF
+        else:
+          - output.turn_off: esp32_led_out_mb
 
 
   - platform: template
