@@ -7,3 +7,5 @@ documentation/site/*
 documentation/caddy/config/*
 documentation/caddy/data/*
 documentation/docs/firmware/firmware.factory.bin
+secrets.yaml
+documentation/.cache/
