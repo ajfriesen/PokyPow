@@ -194,7 +194,7 @@ globals:
 
 output:
   - platform: gpio
-    pin: GPIO4
+    pin: GPIO3
     id: esp32_led_out_mb
 
 
@@ -230,7 +230,7 @@ binary_sensor:
 
   - platform: gpio
     pin:
-      number: GPIO3
+      number: GPIO4
       inverted: true
       mode:
         input: true
@@ -252,7 +252,7 @@ binary_sensor:
 
   - platform: gpio
     pin:
-      number: GPIO2
+      number: GPIO1
       inverted: true
       mode:
         input: true
