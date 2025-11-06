@@ -20,6 +20,11 @@ esphome:
           green: 100%
           blue: 0
           brightness: 50%
+      - if:
+          condition:
+            binary_sensor.is_on: pc_power_sensor
+          then:
+            - output.turn_on: esp32_led_out_mb
 
 esp32:
   board: esp32-c3-devkitm-1
