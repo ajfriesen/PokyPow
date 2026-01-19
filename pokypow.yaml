@@ -5,10 +5,12 @@ substitutions:
 
 esphome:
   name: "${devicename}"
-  friendly_name: PokyPow
-  # Automatically add the mac address to the name
-  # so you can use a single firmware for all devices
+  friendly_name: "${upper_devicename}"
   name_add_mac_suffix: true
+
+  project:
+    name: "ajfriesen.PokyPow"
+    version: "0.1.0"
 
   # Green light after boot
   on_boot:
@@ -33,25 +35,32 @@ esp32:
     type: esp-idf
 
 
+dashboard_import:
+  package_import_url: github://ajfriesen/PokyPow/pokypow.yaml
+  import_full_config: false
+
+
 # Enable Home Assistant API
-# api:
-#   # Blue light after connected to Home Assistant
-#   on_client_connected:
-#     then:
-#       - light.turn_on:
-#           id: led_strip
-#           red: 0
-#           green: 0
-#           blue: 100%
-#           brightness: 50%
-#   on_client_disconnected:
-#     then:
-#       - light.turn_on:
-#           id: led_strip
-#           red: 100%
-#           green: 100%
-#           blue: 0
-#           brightness: 50%
+api:
+  reboot_timeout: 0s
+  # Blue light after connected to Home Assistant
+  on_client_connected:
+    then:
+      - light.turn_on:
+          id: led_strip
+          red: 0
+          green: 0
+          blue: 100%
+          brightness: 50%
+  # Red light after disconnected from Home Assistant
+  on_client_disconnected:
+    then:
+      - light.turn_on:
+          id: led_strip
+          red: 100%
+          green: 0
+          blue: 0
+          brightness: 50%
 
 # Example configuration entry
 # uart:
@@ -85,13 +94,7 @@ wifi:
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "PokyPow Setup"
-  
-  manual_ip:
-    # static_ip: 192.168.178.174
-    static_ip: 192.168.178.7
-    gateway: 192.168.178.1
-    subnet: 255.255.255.0
+    ssid: "PokyPow Hotspot"
 
 
 
@@ -102,7 +105,6 @@ captive_portal:
 # 
 web_server:
   port: 80
-  include_internal: true
 
 ###
 ###  LED, Switchtes, etc.
@@ -115,12 +117,12 @@ light:
     pin: GPIO5
     id: led_strip
     num_leds: 1
-    name: "Gamer LED"
+    name: "${devicename} LED"
 
-# sensor:
-#   - platform: wifi_signal
-#     name: "WiFi Signal"
-#     update_interval: 2s
+sensor:
+  - platform: wifi_signal
+    name: "WiFi Signal"
+    update_interval: 15s
 
 
 switch:
@@ -145,7 +147,6 @@ switch:
   - platform: gpio
     pin: 
       number: GPIO7
-      inverted: true
       mode:
         output: true
         pulldown: true
@@ -223,7 +224,6 @@ binary_sensor:
         else:
           - output.turn_off: esp32_led_out_mb
 
-
   - platform: template
     name: "Power Button Lock"
     id: power_button_lock
@@ -262,9 +262,6 @@ binary_sensor:
         input: true
         pullup: true
     id: esp32_power_in_mb
-    filters:
-      - delayed_on: 10ms
-      - delayed_off: 10ms
     name: "Power Button (Case)"
     on_press:
       then:
