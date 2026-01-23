@@ -22,12 +22,28 @@ nav:
       - advanced/no-home-assistant.md
   - Use Cases:
     - use-cases.md
+  - Reviews: reviews.md
   - About:
       - about.md
+  - Discord: https://discord.com/invite/hHtuXUz6Vq
+  - Shop: https://www.crowdsupply.com/ajfriesen/pokypow
+  - Blog:
+    - blog/index.md
 
 plugins:
+  - social
   - search
   - awesome-pages
+  # - awesome-nav
+
+  - blog:
+      authors_file: "{blog}/.authors.yml"
+      blog_toc: true
+      post_excerpt_separator: <!-- more -->
+      pagination: true
+      pagination_per_page: 10
+      draft: false
+      archive: false
 
 theme:
   name: material
@@ -70,6 +86,14 @@ extra:
   analytics:
     provider: google
     property: G-ZJP9RETVZR
+
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
 
 
 # Extensions for enhanced markdown

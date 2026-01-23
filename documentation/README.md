@@ -1,7 +1,10 @@
 # Documentation
 
-Build:
+Build Container:
 
+docker build .  --tag=my-mkdocs
+
+Build website:
 ```
 docker run --rm -it -p 8000:8000 -v ${PWD}:/docs my-mkdocs build
 ```
@@ -15,4 +18,4 @@ docker run --rm -it -p 8000:8000 -v ${PWD}:/docs my-mkdocs serve --dev-addr=0.0.
 esphome compile ../pokypow.yaml
 > cp ../.esphome/build/pokypow/.pioenvs/pokypow/firmware.factory.bin  docs/firmware/
 
-> rsync -avz site webspace:/home/andrej/docker/pokypow-docs/
+> rsync -avz site andrej@ajfriesen.com:/home/andrej/docker/pokypow-docs/
