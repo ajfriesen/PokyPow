@@ -1,31 +1,34 @@
-name: Publish Firmware
+name: Build
 
 on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
   release:
     types: [published]
 
-permissions:
-  contents: write
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-firmware:
     name: Build Firmware
-    uses: esphome/workflows/.github/workflows/build.yml@2025.1.0
+    uses: esphome/workflows/.github/workflows/build.yml@2025.10.0
     with:
-      #### Modify below here to match your project ####
       files: |
-        pokypow.yaml
-      esphome-version: 2025.2.2
-      combined-name: PokyPow
-      #### Modify above here to match your project ####
-
-      release-summary: ${{ github.event.release.body }}
-      release-url: ${{ github.event.release.html_url }}
-      release-version: ${{ github.event.release.tag_name }}
+        ESPHome/pokypow.yaml
+      esphome-version: 2026.1.0
+      release-summary: ${{ github.event_name == 'release' && github.event.release.body || '' }}
+      release-url: ${{ github.event_name == 'release' && github.event.release.html_url || '' }}
+      release-version: ${{ github.event_name == 'release' && github.event.release.tag_name || '' }}
 
   upload-to-release:
     name: Upload to Release
-    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.1.0
+    if: github.event_name == 'release'
+    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.10.0
     needs:
       - build-firmware
     with:
