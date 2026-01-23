@@ -1,0 +1,202 @@
+light:
+  - platform: esp32_rmt_led_strip
+    rgb_order: GRB
+    chipset: SK6812
+    pin: GPIO5
+    id: led_strip
+    num_leds: 1
+    name: "${devicename} LED"
+
+sensor:
+  - platform: wifi_signal
+    name: "WiFi Signal"
+    update_interval: 15s
+
+
+switch:
+  - platform: template
+    name: "Lock Power Button"
+    id: lock_power_button_switch
+    icon: "mdi:lock"
+    turn_on_action:
+      - lambda: |-
+          id(child_lock) = true;
+    turn_off_action:
+      - lambda: |-
+          id(child_lock) = false;
+    lambda: |-
+      return id(child_lock);
+
+      
+
+  - platform: factory_reset
+    name: Restart with Factory Default Settings
+  
+  - platform: gpio
+    pin: 
+      number: GPIO7
+      mode:
+        output: true
+        pulldown: true
+    id: esp32_power_out_mb
+    internal: true
+
+  - platform: gpio
+    pin: 
+      number: GPIO6
+      mode:
+        output: true
+        pulldown: true
+    id: esp32_reset_out_mb
+    internal: true
+
+  - platform: template
+    name: "Power Switch"
+    id: power_switch
+    internal: true
+    turn_on_action:
+      - switch.turn_on: esp32_power_out_mb
+      - delay: 1000ms
+      - switch.turn_off: esp32_power_out_mb
+
+  - platform: template
+    name: "Power Switch Force"
+    id: power_switch_force
+    internal: true
+    turn_on_action:
+      - switch.turn_on: esp32_power_out_mb
+      - delay: 10000ms
+      - switch.turn_off: esp32_power_out_mb
+
+  - platform: template
+    name: "Reset Switch"
+    id: reset_switch
+    internal: true
+    turn_on_action:
+      - switch.turn_on: esp32_reset_out_mb
+      - delay: 1000ms
+      - switch.turn_off: esp32_reset_out_mb
+
+globals:
+  - id: child_lock
+    type: bool
+    restore_value: true
+    initial_value: 'false'
+
+output:
+  - platform: gpio
+    pin: GPIO3
+    id: esp32_led_out_mb
+
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO10
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    id: pc_power_sensor
+    name: "Power State"
+    device_class: running
+    icon: "mdi:desktop-classic"
+    on_state:
+      if:
+        condition:
+          # When the PC turns ON
+          binary_sensor.is_on: pc_power_sensor
+        then:
+          - output.turn_on: esp32_led_out_mb
+          # When the PC turns OFF
+        else:
+          - output.turn_off: esp32_led_out_mb
+
+  - platform: template
+    name: "Power Button Lock"
+    id: power_button_lock
+    device_class: safety
+    entity_category: config
+    lambda: |-
+      return id(child_lock);
+
+  - platform: gpio
+    pin:
+      number: GPIO4
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    id: esp32_reset_in_mb
+    name: "Reset Sensor (Case)"
+    on_press:
+      then:
+        - if:
+            condition:
+              lambda: 'return !id(child_lock);'
+            then:
+              - switch.toggle: reset_switch
+              - delay: 1000ms
+              - switch.turn_off: reset_switch
+
+            else:
+              - logger.log: "Power button locked – reset press ignored"
+
+  - platform: gpio
+    pin:
+      number: GPIO1
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    id: esp32_power_in_mb
+    name: "Power Button (Case)"
+    on_press:
+      then:
+        - if:
+            condition:
+              lambda: 'return !id(child_lock);'
+            then:
+              - switch.toggle: power_switch
+              - delay: 1000ms
+              - switch.turn_off: power_switch
+            else:
+              - logger.log: "Power button locked – reset press ignored"
+
+
+button:
+  - platform: template
+    name: "Power Button"
+    id: power_button
+    icon: "mdi:power-standby"
+    on_press:
+      then:
+        - if:
+            condition:
+              lambda: 'return !id(child_lock);'
+            then:
+              - switch.turn_on: power_switch
+              - delay: 1000ms
+              - switch.turn_off: power_switch
+
+  - platform: template
+    name: "Force Power Off"
+    id: force_power_off
+    icon: "mdi:power-plug-off"
+    on_press:
+      then:
+        - switch.turn_on: power_switch_force
+        - delay: 5000ms
+        - switch.turn_off: power_switch_force
+
+  - platform: template
+    name: "PC Reset"
+    id: reset_button
+    icon: "mdi:restart"
+    on_press:
+      then:
+        - switch.toggle: reset_switch
+        - switch.turn_on: reset_switch
+        - delay: 1000ms
+        - switch.turn_off: reset_switch
+
