@@ -9,3 +9,7 @@ documentation/caddy/data/*
 documentation/docs/firmware/firmware.factory.bin
 secrets.yaml
 documentation/.cache/
+
+docs/site/*
+docs/.cache/
+docs/.venv
