@@ -301,8 +301,30 @@ repo = "fontawesome/brands/github"
 # ----------------------------------------------------------------------------
 # The "extra" section contains miscellaneous settings.
 # ----------------------------------------------------------------------------
-#[[project.extra.social]]
+[[project.extra.social]]
 icon = "fontawesome/brands/github"
 link = "https://github.com/ajfriesen/pokypow"
 
+[[project.extra.social]]
+icon = "fontawesome/brands/discord"
+link = "https://discord.com/invite/hHtuXUz6Vq"
 
+[[project.extra.social]]
+icon = "fontawesome/brands/x-twitter"
+link = "https://x.com/mr_ajfriesen"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/instagram"
+link = "https://www.instagram.com/mr_ajfriesen"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/mastodon"
+link = "https://techhub.social/@ajfriesen"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/linkedin"
+link = "https://www.linkedin.com/in/andrej-friesen"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/youtube"
+link = "https://www.youtube.com/@ajfriesen"
