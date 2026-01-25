@@ -1,8 +1,10 @@
 # PokyPow
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/ajfriesen/pokypow)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/:user/:repo/:workflow)
 
-![Website](https://img.shields.io/website?url=https%3A%2F%2Fdocs.pokypow.com)
+
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fpokypow.com)
 
 
 Remote shutdown and start you PC/server with Home Assistant.
@@ -35,6 +37,6 @@ Now you can turn on/off your PC and check if it is running via Home Assistant.
 
 # Project Documentation
 
-You can find all product documentation, related blog post on my dedicated [PokyPow Documentation](https://docs.pokypow.com).
+You can find all product documentation, related blog post on my dedicated [PokyPow Documentation](https://pokypow.com/docs).
 
 
