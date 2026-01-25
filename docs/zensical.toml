@@ -46,10 +46,16 @@ Copyright &copy; 2026 Andrej Friesen
 # can be defined using TOML syntax.
 #
 # Read more: https://zensical.org/docs/setup/navigation/
-# nav = [
-#   { "Get started" = "index.md" },
-#   { "Markdown in 5min" = "markdown.md" },
-# ]
+nav = [
+  {"Home" = "index.md"},
+  {"Docs" = [
+     "docs/index.md",
+     "docs/connecting-pc.md",
+     "docs/home-assistant.md"
+  ]},
+  {"About" = "about.md"}
+]
+
 
 # With the "extra_css" option you can add your own CSS styling to customize
 # your Zensical project according to your needs. You can add any number of
@@ -332,3 +338,12 @@ link = "https://www.youtube.com/@ajfriesen"
 [[project.extra.analytics]]
 provider = "google"
 property = "G-ZFS1C8R5FW"
+
+[project.extra.consent]
+title = "Cookie consent"
+description = """
+    We use cookies to recognize your repeated visits and preferences, as well
+    as to measure the effectiveness of our documentation and whether users
+    find what they're searching for. With your consent, you're helping us to
+    make our documentation better.
+""" 
