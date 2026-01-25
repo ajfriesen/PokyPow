@@ -328,3 +328,7 @@ link = "https://www.linkedin.com/in/andrej-friesen"
 [[project.extra.social]]
 icon = "fontawesome/brands/youtube"
 link = "https://www.youtube.com/@ajfriesen"
+
+[[project.extra.analytics]]
+provider = "google"
+property = "G-ZFS1C8R5FW"
