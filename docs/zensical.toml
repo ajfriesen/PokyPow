@@ -17,7 +17,7 @@ site_name = "PokyPow"
 # meaningful description of the site content for use by search engines.
 #
 # Read more: https://zensical.org/docs/setup/basics/#site_description
-site_description = "A new project generated from the default template project."
+site_description = "PokyPow - The hardware parental control for your Gaming PC."
 
 # The site_author attribute. This is used in the HTML head element.
 #
@@ -30,6 +30,8 @@ site_author = "Andrej Friesen"
 site_url = "https://pokypow.com"
 
 repo_url = "https://github.com/ajfriesen/pokypow"
+repo = "fontawesome/brands/github"
+
 
 # The copyright notice appears in the page footer and can contain an HTML
 # fragment.
@@ -51,8 +53,14 @@ nav = [
   {"Docs" = [
      "docs/index.md",
      "docs/connecting-pc.md",
-     "docs/home-assistant.md"
+     "docs/home-assistant.md",
+     "docs/webinterface.md",
+     "docs/always-on-usb.md",
+     "docs/rest.md"
   ]},
+  {"FAQ" = "faq.md"},
+  {"Support" = "support.md"},
+  {"Reviews & Media" = "reviews.md"},
   {"About" = "about.md"}
 ]
 
@@ -347,3 +355,5 @@ description = """
     find what they're searching for. With your consent, you're helping us to
     make our documentation better.
 """ 
+
+[project.markdown_extensions.admonition]
