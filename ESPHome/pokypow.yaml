@@ -105,3 +105,15 @@ web_server:
 
 packages:
   core: !include core.yaml
+
+# Enable downloading the manifest JSON
+http_request:
+  timeout: 10s
+
+# Check for updates from the website
+update:
+  - platform: http_request
+    id: firmware_update
+    name: "Firmware Update"
+    source_url: https://pokypow.com/firmware/manifest.json
+    update_interval: 1min
