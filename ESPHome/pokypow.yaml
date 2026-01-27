@@ -116,5 +116,5 @@ update:
   - platform: http_request
     id: firmware_update
     name: "Firmware Update"
-    source_url: https://pokypow.com/firmware/manifest.json
+    source: https://pokypow.com/firmware/manifest.json
     update_interval: 1min
