@@ -1,7 +1,7 @@
 # PokyPow
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/ajfriesen/pokypow)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/:user/:repo/:workflow)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ajfriesen/pokypow/build)
 
 
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fpokypow.com)
