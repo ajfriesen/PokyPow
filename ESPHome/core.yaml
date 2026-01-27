@@ -5,7 +5,7 @@ light:
     pin: GPIO5
     id: led_strip
     num_leds: 1
-    name: "${devicename} LED"
+    name: "LED"
 
 sensor:
   - platform: wifi_signal
