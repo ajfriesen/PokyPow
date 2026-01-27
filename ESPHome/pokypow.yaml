@@ -71,6 +71,7 @@ api:
 ota:
   - platform: esphome
   - platform: web_server
+  - platform: http_request
 
 
 # Enable WiFi provisioning via USB/Serial after flashing
