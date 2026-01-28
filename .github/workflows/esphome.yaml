@@ -52,15 +52,41 @@ jobs:
           ref: main
 
       - name: Generate Manifest
+        env:
+          VERSION: ${{ github.event.release.tag_name }}
+          DOWNLOAD_URL: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/pokypow-esp32c3.ota.bin
+          MD5_URL: https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/pokypow-esp32c3.ota.bin.md5
+          RELEASE_URL: ${{ github.event.release.html_url }}
+          SUMMARY: ${{ github.event.release.body }}
         run: |
           mkdir -p docs/docs/firmware
           
-          VERSION="${{ github.event.release.tag_name }}"
-          URL="https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/pokypow-esp32c3.ota.bin"
+          # Download the MD5 file
+          MD5=$(curl -L -s "$MD5_URL" | cut -d ' ' -f 1)
           
-          # Write the manifest file
-          # We explicitly set the version and the download URL for the device to use
-          echo "{\"version\": \"$VERSION\", \"url\": \"$URL\"}" | jq . > docs/docs/firmware/manifest.json
+          # Generate JSON
+          jq -n \
+            --arg version "$VERSION" \
+            --arg download_url "$DOWNLOAD_URL" \
+            --arg release_url "$RELEASE_URL" \
+            --arg md5 "$MD5" \
+            --arg summary "$SUMMARY" \
+            '{
+              name: "PokyPow",
+              version: $version,
+              funding_url: "https://github.com/sponsors/ajfriesen",
+              builds: [
+                {
+                  chipFamily: "ESP32-C3",
+                  ota: {
+                    md5: $md5,
+                    path: $download_url,
+                    release_url: $release_url,
+                    summary: $summary
+                  }
+                }
+              ]
+            }' > docs/docs/firmware/manifest.json
           
           cat docs/docs/firmware/manifest.json
 
