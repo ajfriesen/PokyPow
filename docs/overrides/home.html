@@ -71,6 +71,21 @@
             margin: 0 auto;
             padding: 0 20px;
         }
+        
+        .logo-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr); /* Creates two equal columns */
+                gap: 20px;                             /* Space between logos */
+                justify-items: center;                 /* Centers images horizontally */
+                align-items: center;                    /* Centers images vertically */
+                max-width: 700px;                      /* Limits overall width */
+                margin: 0 auto;                        /* Centers the grid on the page */
+            }
+
+            .logo-grid img {
+                max-width: 100%;                       /* Makes images responsive */
+                height: auto;
+            }
 
         /* Buttons */
         .btn {
@@ -248,21 +263,6 @@
             border: 1px solid #374151;
         }
 
-        /* Specs */
-        .specs {
-            padding: 100px 0;
-            background: #f9fafb;
-        }
-
-        .spec-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .spec-item strong { color: var(--dark); }
-        .spec-item span { color: var(--gray); font-family: monospace; }
-
         /* Use Cases */
         .use-cases {
             padding: 100px 0;
@@ -312,7 +312,6 @@
             <div class="nav-links">
                 <a href="#features">Features</a>
                 <a href="#integration">Integration</a>
-                <a href="#specs">Specs</a>
                 <a href="/docs/">Documentation</a>
             </div>
 
@@ -344,7 +343,7 @@
     <header class="home-hero">
         <div class="home-container">
             <div class="hero-badge">Launch Coming Soon to Crowd Supply</div>
-            <h1>Parental Control for<br><span>Your Kids Gaming PC</span></h1>
+            <h1>Remote Power Control<br> and Monitoring for<br><span>for any Desktop PC</span></h1>
             <div class="hero-btns">
                 <a href="https://www.crowdsupply.com/ajfriesen/pokypow" target="_blank" class="btn btn-primary">Support on Crowd Supply</a>
                 <a href="/docs/" class="btn btn-outline">Read the Docs</a>
@@ -352,32 +351,47 @@
         </div>
     </header>
 
+
+
+
     <section id="features" class="features">
         <div class="home-container">
+            <img src="img/pc-switch-pcb-angle-01.jpeg" alt="PokyPow" style="width: 700px;"><br>
+
             <div style="text-align: center; margin-bottom: 60px;">
-                <h2>Total Control.</h2>
-                <p>Designed for enthusiasts who want full control over their hardware.</p>
+                <h2>Use cases</h2>
+                <p>Designed for Home Assistant enthusiasts who want full control over their computer.</p>
             </div>
             <div class="grid grid-3">
                 <div class="card">
-                    <div class="card-icon">🔌</div>
-                    <h3>True Hardware Control</h3>
-                    <p>Connects directly to your motherboard's Power and Reset headers. Works even if your OS is frozen or has blue-screened.</p>
+                    <div class="card-icon">📡</div>
+                    <h3>Remote Power Button</h3>
+                    <p>Initiate a clean shutdown or power on where ever your PC is. A server in the basement, a VR PC in your living room, etc.</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">🏠</div>
-                    <h3>Native Home Assistant</h3>
-                    <p>Runs ESPHome firmware out of the box. Discovers automatically on your network. No cloud, no apps, no delay.</p>
+                    <div class="card-icon">🕹️</div>
+                    <h3>Parental Control</h3>
+                    <p>Create a schedule when the kids are allowed to game. Outside the schedule the PC can not turn on.</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">🔓</div>
-                    <h3>Open Source</h3>
-                    <p>We believe in ownership. The hardware schematics, PCB design, and firmware are all 100% open source.</p>
+                    <div class="card-icon">🔋</div>
+                    <h3>Save Power</h3>
+                    <p>Power your PC or big AI server on a schedule when you need it.</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">🔓</div>
-                    <h3>No Subscription</h3>
-                    <p>No monthly fees or hidden costs. Just a one-time purchase.</p>
+                    <div class="card-icon">💬</div>
+                    <h3>Monitor your PC</h3>
+                    <p>Get notified, when the PC turns on, the PokyPow was unplugged or lost the WiFi signal to konw that someone it messing with your PC.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🥶</div>
+                    <h3>The "Frozen PC" Fix</h3>
+                    <p>Reset your PC when it is forzen.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎛️</div>
+                    <h3>Automate Your Streaming Setup</h3>
+                    <p>Run Updates at night or turn your Streaming PC on when your Game PC us turned on.</p>
                 </div>
             </div>
         </div>
@@ -388,113 +402,87 @@
             <div class="grid grid-2">
                 <div>
                     <h2>How It Works.</h2>
-                    <p>
-                        Connect power, reset and power LED to the PokyPow.
-                        <br>
-                        Connect USB for powering the PokyPow.
-                        <br>
-                        Your PC becomes just another switch in your smart home.
-                    </p>
-                    <ul style="list-style: none; margin-top: 20px;">
-                        <li style="margin-bottom: 15px; display: flex; gap: 10px;">
-                            <span style="color: var(--primary);">✓</span> Exposes the Power and Reset buttons to your smart home
+                    <ol>
+                        <li>
+                            Flash the PokyPow via the browser.
                         </li>
-                        <li style="margin-bottom: 15px; display: flex; gap: 10px;">
-                            <span style="color: var(--primary);">✓</span> Reports real-time power state
+                        <li>
+                            Connect Power, Reset and Power LED  from the Case to the PokyPow.
                         </li>
-                        <li style="margin-bottom: 15px; display: flex; gap: 10px;">
-                            <span style="color: var(--primary);">✓</span> No drivers needed on the host PC
+                        <li>
+                            Connect Power, Reset and Power LED  from the Mainboard to the PokyPow.
                         </li>
-                    </ul>
+                        <li>
+                            Connect USB for powering the PokyPow.
+                        </li>
+                    </ol>
                 </div>
-                <div class="code-block">
-                <img src="/assets/images/esp-home-logo.png" alt="ESPHome Logo" style="width: 120px; margin-bottom: 20px;"><br>
-
-
-                    <span style="color: #6b7280;"># Example ESPHome Config</span><br>
-                    <span style="color: #f472b6;">switch:</span><br>
-                    &nbsp;&nbsp;- <span style="color: #f472b6;">platform:</span> gpio<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f472b6;">pin:</span> GPIO3<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f472b6;">id:</span> pc_power<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f472b6;">name:</span> "Gaming PC Power"<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f472b6;">on_turn_on:</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span style="color: #f472b6;">switch.turn_on:</span> pc_power_relay<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span style="color: #f472b6;">delay:</span> 200ms<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <span style="color: #f472b6;">switch.turn_off:</span> pc_power_relay
-                </div>
+                <img src="img/pokypow-in-pc.jpg" alt="PokyPow used in a PC" style="width: 700px;"><br>
             </div>
         </div>
     </section>
 
     <section id="use-cases" class="use-cases">
         <div class="home-container">
-            <h2 style="text-align: center; margin-bottom: 60px;">What can you do with PokyPow?</h2>
+            <h2 style="text-align: center; margin-bottom: 60px;">Need more reasons?</h2>
             <div class="grid grid-3">
                 <div class="use-case-card">
                     <div class="check">✓</div>
                     <div>
-                        <h3>Parental Controls</h3>
-                        <p>Automate "School Mode": Ensure the gaming rig is off during homework hours, right from your phone.</p>
+                        <h3>Open Source</h3>
+                        <p>We believe in ownership. The hardware schematics, PCB design, and firmware are all 100% open source.</p>
                     </div>
                 </div>
                 <div class="use-case-card">
                     <div class="check">✓</div>
                     <div>
-                        <h3>Save Power</h3>
-                        <p>Perfect for home labs. Turn on your power-hungry server only when you need it to save electricity.</p>
+                        <h3>Made for ESPHome</h3>
+                        <p>Use the official firmware or customize the code to your liking.</p>
                     </div>
                 </div>
                 <div class="use-case-card">
                     <div class="check">✓</div>
                     <div>
-                        <h3>The "Frozen PC" Fix</h3>
-                        <p>PC locked up while you're away via RDP? Perform a physical hard reset remotely to get back online.</p>
+                        <h3>No App</h3>
+                        <p>Not yet another app on your phone that stops working in 2 years.</p>
                     </div>
                 </div>
                 <div class="use-case-card">
                     <div class="check">✓</div>
                     <div>
-                        <h3>Remote Power On/Off</h3>
-                        <p>Power on your PC for a Remote Desktop connection.</p>
+                        <h3>No Account</h3>
+                        <p>No sign up. Just use it without an account.</p>
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="check">✓</div>
+                    <div>
+                        <h3>No Cloud</h3>
+                        <p>Runs local and nobody can remove functionality from your device.</p>
+                    </div>
+                </div>
+                <div class="use-case-card">
+                    <div class="check">✓</div>
+                    <div>
+                        <h3>No Subscription</h3>
+                        <p>No monthly fees, hidden costs or paywalls for features. Just a one-time purchase.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="specs" class="specs">
-        <div class="home-container" style="max-width: 800px;">
-            <h2 style="text-align: center; margin-bottom: 40px;">Technical Specifications</h2>
-            <div class="spec-item">
-                <strong>Microcontroller</strong>
-                <span>ESP32-C3-MINI-1U</span>
-            </div>
-            <div class="spec-item">
-                <strong>Firmware</strong>
-                <span>ESPHome</span>
-            </div>
-            <div class="spec-item">
-                <strong>Wireless</strong>
-                <span>2.4 GHz Wireless LAN + Bluetooth 5 (LE)</span>
-            </div>
-            <div class="spec-item">
-                <strong>Power Input</strong>
-                <span>5V via Internal USB Header or USB-C</span>
-            </div>
-            <div class="spec-item">
-                <strong>Connectors</strong>
-                <span>Pins for Power, Reset and LED for the PC case and motherboard</span>
-            </div>
-            <div class="spec-item">
-                <strong>External Antenna</strong>
-                <span>I-PEX MHF3, W.FL</span>
-            </div>
-            <div class="spec-item">
-                <strong>Dimensions</strong>
-                <span>xxmm X xxmm X xxmm</span>
-            </div>
+    <section class="logos">
+        <div class="home-container logo-grid">
+            <img src="img/made-for-esphome-black-on-white.png" alt="Made for ESPHome Logo" style="width: 300px;">
+            <img src="img/home-assistant-wordmark-color-on-light.png" alt="Home Assistant Logo" style="width: 300px;">
+            <img src="img/crowd-supply-logo-dark.png" alt="CrowdSupply Logo" style="width: 300px;">
+            <img src="img/soldered-electronics-launch-logo-01.svg" alt="Soldered Electronics Inkubator" style="width: 300px;">
         </div>
     </section>
+
+
 
     <section class="cta">
         <div class="home-container">

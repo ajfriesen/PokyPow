@@ -59,6 +59,8 @@ nav = [
      "docs/rest.md"
   ]},
   {"FAQ" = "faq.md"},
+  {"Troubleshooting" = "troubleshooting.md"},
+  {"Specification" = "specs.md"},
   {"Support" = "support.md"},
   {"Reviews & Media" = "reviews.md"},
   {"About" = "about.md"}
