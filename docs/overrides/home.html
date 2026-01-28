@@ -328,8 +328,9 @@
         <div class="home-container nav-content">
             <div class="logo">⚡ PokyPow</div>
             <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#integration">Integration</a>
+                <a href="#features">Use Cases</a>
+                <a href="#integration">How it works</a>
+                <a href="#integration">More reasons</a>
                 <a href="/docs/">Documentation</a>
             </div>
 
@@ -453,9 +454,48 @@
                     </ol>
                 </div>
 
-                <div style="text-align: center;">
-                    <img src="img/pokypow-in-pc.jpg" alt="PokyPow hardware installed inside a desktop computer case connected to motherboard and case" style="width: 100%; max-width: 700px; height: auto; border-radius: 16px;">
+                <style>
+                    .fade {animation-name: fade; animation-duration: 1.5s;}
+                    @keyframes fade {from {opacity: .4} to {opacity: 1}}
+                    .slideshow-container {
+                        position: relative;
+                        max-width: 700px;
+                        margin: auto;
+                        aspect-ratio: 4 / 3;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        overflow: hidden;
+                        border-radius: 16px;
+                    }
+                    .mySlides {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        display: none;
+                        border-radius: 16px;
+                    }
+                </style>
+                <div class="slideshow-container">
+                    <img class="mySlides fade" src="img/pokypow-in-pc.jpg" alt="PokyPow hardware installed inside a desktop computer case connected to motherboard and case">
+                    <img class="mySlides fade" src="img/pokypow-home-assistant.png" alt="PokyPow Home Assistant Integration">
                 </div>
+                <script>
+                    let slideIndex = 0;
+                    showSlides();
+
+                    function showSlides() {
+                        let i;
+                        let slides = document.getElementsByClassName("mySlides");
+                        for (i = 0; i < slides.length; i++) {
+                            slides[i].style.display = "none";
+                        }
+                        slideIndex++;
+                        if (slideIndex > slides.length) {slideIndex = 1}
+                        slides[slideIndex-1].style.display = "block";
+                        setTimeout(showSlides, 4000); 
+                    }
+                </script>
             </div>
         </div>
     </section>
