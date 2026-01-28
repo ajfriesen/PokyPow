@@ -71,7 +71,7 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         .logo-grid {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr); /* Creates two equal columns */
@@ -220,7 +220,7 @@
         }
 
         .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); align-items: center;}
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: center;}
 
         .card {
             padding: 40px;
@@ -243,14 +243,24 @@
 
         /* Integration Section */
         .integration {
-            background: var(--dark);
-            color: white !important;
+            background: #111827;
+            color: white;
             padding: 100px 0;
             overflow: hidden;
         }
 
         .integration h2 { color: white; }
         .integration p { color: #9ca3af; }
+        .integration ol { 
+            margin-left: 20px; 
+            margin-bottom: 30px; 
+        }
+        .integration li { 
+            font-size: 1.125rem; 
+            color: #9ca3af; 
+            margin-bottom: 12px;
+            padding-left: 10px;
+        }
 
         .code-block {
             background: #1f2937;
@@ -284,7 +294,7 @@
         .cta {
             text-align: center;
             padding: 100px 0;
-            background: radial-gradient(circle at center, var(--light) 0%, white 70%);
+            background: radial-gradient(circle at center, var(--light) 0%, var(--white) 70%);
         }
 
         /* Footer */
@@ -300,8 +310,16 @@
             h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
             .hero-btns { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
+            .hero-btns .btn, .cta .btn { width: 100%; justify-content: center; }
+            .home-nav .btn { display: none; }
+            .md-header__option { margin: 0 10px; }
         }
+
+        @media (max-width: 600px) {
+            .logo-grid {
+            grid-template-columns: 1fr; /* Stack logos in 1 column on mobile */
+        }
+}
     </style>
 {% endblock %}
 
@@ -356,7 +374,10 @@
 
     <section id="features" class="features">
         <div class="home-container">
-            <img src="img/pc-switch-pcb-angle-01.jpeg" alt="PokyPow" style="width: 700px;"><br>
+            <div style="text-align: center; margin-bottom: 40px;">
+                <img src="img/pc-switch-pcb-angle-01.jpeg" alt="PokyPow" style="width: 100%; max-width: 700px; height: auto; border-radius: 16px;">
+            </div>
+
 
             <div style="text-align: center; margin-bottom: 60px;">
                 <h2>Use cases</h2>
@@ -407,17 +428,23 @@
                             Flash the PokyPow via the browser.
                         </li>
                         <li>
-                            Connect Power, Reset and Power LED  from the Case to the PokyPow.
+                            Connect Power, Reset and the LED from the Case to the PokyPow.
                         </li>
                         <li>
-                            Connect Power, Reset and Power LED  from the Mainboard to the PokyPow.
+                            Connect Power, Reset and the LED from the Mainboard to the PokyPow.
                         </li>
                         <li>
-                            Connect USB for powering the PokyPow.
+                            Plug into USB2.0 header for power.
+                        </li>
+                        <li>
+                            Control your PC with Home Assistant!
                         </li>
                     </ol>
                 </div>
-                <img src="img/pokypow-in-pc.jpg" alt="PokyPow used in a PC" style="width: 700px;"><br>
+
+                <div style="text-align: center;">
+                    <img src="img/pokypow-in-pc.jpg" alt="PokyPow used in a PC" style="width: 100%; max-width: 700px; height: auto; border-radius: 16px;">
+                </div>
             </div>
         </div>
     </section>
