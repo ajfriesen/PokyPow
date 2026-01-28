@@ -87,6 +87,18 @@
                 height: auto;
             }
 
+            .logo-dark {
+                display: none;
+            }
+
+            [data-md-color-scheme="slate"] .logo-light {
+                display: none;
+            }
+
+            [data-md-color-scheme="slate"] .logo-dark {
+                display: block;
+            }
+
         /* Buttons */
         .btn {
             display: inline-flex;
@@ -135,16 +147,28 @@
         }
 
         .nav-content {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            justify-self: end;
+            gap: 20px;
         }
         
         /* Palette Switcher */
         .md-header__option {
             display: flex;
             align-items: center;
-            margin: 0 20px;
+            margin: 0;
+            padding: 0;
+        }
+        .home-nav .md-header__button {
+            margin: 0;
+            padding: 0;
         }
         .md-option { display: none; }
         .md-icon { cursor: pointer; width: 24px; height: 24px; display: block; }
@@ -163,11 +187,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            white-space: nowrap;
         }
 
         .nav-links {
             display: flex;
             gap: 30px;
+            align-items: center;
         }
 
         .nav-links a {
@@ -311,7 +337,7 @@
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            .nav-links { display: none; }
+            .nav-links a { display: none; }
             .hero-btns { flex-direction: column; }
             .hero-btns .btn, .cta .btn { width: 100%; justify-content: center; }
             .home-nav .btn { display: none; }
@@ -337,23 +363,25 @@
                 <a href="/docs/">Documentation</a>
             </div>
 
-            <!-- Palette Toggle -->
-            <form class="md-header__option" data-md-component="palette">
-                
-                <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="white"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
-                
-                <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
-                </label>
-                
-                <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
-                
-                <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-                </label>
-            </form>
+            <div class="nav-actions">
+                <a href="https://www.crowdsupply.com/ajfriesen/pokypow" target="_blank" class="btn btn-primary" style="padding: 8px 20px; font-size: 1rem;">Pre-Order</a>
 
-            <a href="https://www.crowdsupply.com/ajfriesen/pokypow" target="_blank" class="btn btn-primary" style="padding: 8px 20px; font-size: 1rem;">Pre-Order</a>
+                <!-- Palette Toggle -->
+                <form class="md-header__option" data-md-component="palette">
+                    
+                    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="white"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+                    
+                    <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+                    </label>
+                    
+                    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+                    
+                    <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                    </label>
+                </form>
+            </div>
         </div>
     </nav>
 {% endblock %}
@@ -558,7 +586,8 @@
     <section class="logos">
         <div class="home-container logo-grid">
             <img src="img/made-for-esphome-black-on-white.png" alt="Made for ESPHome Logo" style="width: 300px;">
-            <img src="img/home-assistant-wordmark-color-on-light.png" alt="Home Assistant Logo" style="width: 300px;">
+            <img src="img/home-assistant-wordmark-color-on-light.png" alt="Home Assistant Logo" class="logo-light" style="width: 300px;">
+            <img src="img/home-assistant-wordmark-color-on-dark.png" alt="Home Assistant Logo" class="logo-dark" style="width: 300px;">
             <img src="img/crowd-supply-logo-dark.png" alt="CrowdSupply Logo" style="width: 300px;">
             <img src="img/soldered-electronics-launch-logo-01.svg" alt="Soldered Electronics Inkubator" style="width: 300px;">
         </div>
