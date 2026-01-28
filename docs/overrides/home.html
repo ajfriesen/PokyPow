@@ -4,14 +4,29 @@
     <style>
         :root {
             /* Brand Colors based on the 'tech' vibe */
-            --primary: #2e8b57; /* SeaGreen - nod to open source/hardware */
-            --primary-dark: #1e5e3a;
-            --accent: #ef4444; /* Alert color for 'reset' functionality reference */
+            --primary: #000000;
+            --primary-dark: #333333;
+            --accent: #000000;
             --dark: #111827;
             --light: #f3f4f6;
             --gray: #6b7280;
             --white: #ffffff;
             --border: #e5e7eb;
+            --bg-glass: rgba(255,255,255,0.9);
+            --primary-fg: #ffffff;
+        }
+
+        [data-md-color-scheme="slate"] {
+            --primary: #ffffff;
+            --primary-dark: #e5e5e5;
+            --accent: #ffffff;
+            --dark: #f3f4f6;
+            --light: #1e1e20;
+            --gray: #9ca3af;
+            --white: #161618;
+            --border: #374151;
+            --bg-glass: rgba(22, 22, 24, 0.9);
+            --primary-fg: #000000;
         }
 
         /* Reset some Material styles that might conflict */
@@ -19,6 +34,7 @@
             background-color: var(--white) !important;
             color: var(--dark) !important;
             line-height: 1.6;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
 
         .md-container {
@@ -72,13 +88,13 @@
 
         .btn-primary {
             background-color: var(--primary);
-            color: white;
+            color: var(--primary-fg);
         }
 
         .btn-primary:hover {
             background-color: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(46, 139, 87, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
         }
 
         .btn-outline {
@@ -89,7 +105,7 @@
 
         .btn-outline:hover {
             background: var(--dark);
-            color: white;
+            color: var(--primary-fg);
         }
 
         /* Navbar */
@@ -97,7 +113,7 @@
             padding: 20px 0;
             position: sticky;
             top: 0;
-            background: rgba(255,255,255,0.9);
+            background: var(--bg-glass);
             backdrop-filter: blur(10px);
             z-index: 50;
             border-bottom: 1px solid var(--border);
@@ -108,6 +124,22 @@
             justify-content: space-between;
             align-items: center;
         }
+        
+        /* Palette Switcher */
+        .md-header__option {
+            display: flex;
+            align-items: center;
+            margin: 0 20px;
+        }
+        .md-option { display: none; }
+        .md-icon { cursor: pointer; width: 24px; height: 24px; display: block; }
+        .md-icon svg { color: var(--dark); }
+
+        /* CSS fallback for palette visibility */
+        input[id="__palette_0"]:checked ~ label[for="__palette_1"] { display: block !important; }
+        input[id="__palette_1"]:checked ~ label[for="__palette_0"] { display: block !important; }
+        /* Hide labels that still have the hidden attribute if not overridden, or ensure hidden works */
+        .md-header__option label[hidden] { display: none; }
 
         .logo {
             font-size: 1.5rem;
@@ -136,7 +168,7 @@
         .home-hero {
             padding: 120px 0 80px;
             text-align: center;
-            background: radial-gradient(circle at 50% 0%, #e6fffa, transparent 50%);
+            background: radial-gradient(circle at 50% 0%, var(--light), transparent 50%);
         }
 
         .home-hero h1 span {
@@ -152,8 +184,8 @@
 
         .hero-badge {
             display: inline-block;
-            background: #d1fae5;
-            color: #065f46;
+            background: var(--border);
+            color: var(--dark);
             padding: 4px 12px;
             border-radius: 9999px;
             font-size: 0.875rem;
@@ -252,7 +284,7 @@
         .cta {
             text-align: center;
             padding: 100px 0;
-            background: radial-gradient(circle at center, #d1fae5 0%, white 70%);
+            background: radial-gradient(circle at center, var(--light) 0%, white 70%);
         }
 
         /* Footer */
@@ -274,7 +306,7 @@
 {% endblock %}
 
 {% block header %}
-    <nav class="home-nav">
+    <nav class="home-nav" data-md-component="header">
         <div class="home-container nav-content">
             <div class="logo">⚡ PokyPow</div>
             <div class="nav-links">
@@ -283,6 +315,23 @@
                 <a href="#specs">Specs</a>
                 <a href="/docs/">Documentation</a>
             </div>
+
+            <!-- Palette Toggle -->
+            <form class="md-header__option" data-md-component="palette">
+                
+                <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="white"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+                
+                <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+                </label>
+                
+                <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+                
+                <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                </label>
+            </form>
+
             <a href="https://www.crowdsupply.com/ajfriesen/pokypow" target="_blank" class="btn btn-primary" style="padding: 8px 20px; font-size: 1rem;">Pre-Order</a>
         </div>
     </nav>
@@ -348,13 +397,13 @@
                     </p>
                     <ul style="list-style: none; margin-top: 20px;">
                         <li style="margin-bottom: 15px; display: flex; gap: 10px;">
-                            <span style="color: #34d399;">✓</span> Exposes the Power and Reset buttons to your smart home
+                            <span style="color: var(--primary);">✓</span> Exposes the Power and Reset buttons to your smart home
                         </li>
                         <li style="margin-bottom: 15px; display: flex; gap: 10px;">
-                            <span style="color: #34d399;">✓</span> Reports real-time power state
+                            <span style="color: var(--primary);">✓</span> Reports real-time power state
                         </li>
                         <li style="margin-bottom: 15px; display: flex; gap: 10px;">
-                            <span style="color: #34d399;">✓</span> No drivers needed on the host PC
+                            <span style="color: var(--primary);">✓</span> No drivers needed on the host PC
                         </li>
                     </ul>
                 </div>
