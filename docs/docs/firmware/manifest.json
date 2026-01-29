@@ -1,15 +1,15 @@
 {
   "name": "PokyPow",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "funding_url": "https://github.com/sponsors/ajfriesen",
   "builds": [
     {
       "chipFamily": "ESP32-C3",
       "ota": {
-        "md5": "e9d2833325d866950fe00688cd7d24b1",
-        "path": "https://github.com/ajfriesen/PokyPow/releases/download/0.4.0/pokypow-esp32c3.ota.bin",
-        "release_url": "https://github.com/ajfriesen/PokyPow/releases/tag/0.4.0",
-        "summary": "Upgrade to ESPHome 2026.1.0\r\n\r\n**Full Changelog**: https://github.com/ajfriesen/PokyPow/compare/0.3.0...0.4.0"
+        "md5": "72308e8179727faeceef1e41ed5b211b",
+        "path": "https://github.com/ajfriesen/PokyPow/releases/download/0.4.2/pokypow-esp32c3.ota.bin",
+        "release_url": "https://github.com/ajfriesen/PokyPow/releases/tag/0.4.2",
+        "summary": "**Full Changelog**: https://github.com/ajfriesen/PokyPow/compare/0.4.0...0.4.2"
       }
     }
   ]
