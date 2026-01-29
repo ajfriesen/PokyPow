@@ -10,7 +10,7 @@ esphome:
 
   project:
     name: "ajfriesen.PokyPow"
-    version: "0.3.0"
+    version: "0.4.0"
 
   # Green light after boot
   on_boot:
@@ -114,7 +114,13 @@ http_request:
 # Check for updates from the website
 update:
   - platform: http_request
-    id: firmware_update
-    name: "Firmware Update"
-    source: https://pokypow.com/firmware/manifest.json
+    id: firmware_update_stable
+    name: "Firmware Update (Stable)"
+    source: "https://pokypow.com/firmware/manifest.json"
+    update_interval: 1min
+
+  - platform: http_request
+    id: firmware_update_beta
+    name: "Firmware Update (Beta)"
+    source: "https://pokypow.com/firmware/beta/manifest.json"
     update_interval: 1min
