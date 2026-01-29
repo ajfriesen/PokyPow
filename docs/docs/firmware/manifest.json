@@ -1,4 +1,16 @@
 {
+  "name": "PokyPow",
   "version": "0.3.0",
-  "url": "https://github.com/ajfriesen/PokyPow/releases/download/0.3.0/pokypow-esp32c3.ota.bin"
+  "funding_url": "https://github.com/sponsors/ajfriesen",
+  "builds": [
+    {
+      "chipFamily": "ESP32-C3",
+      "ota": {
+        "md5": "c0f644a959b42d98af3e5f368486295b",
+        "path": "https://github.com/ajfriesen/PokyPow/releases/download/0.3.0/pokypow-esp32c3.ota.bin",
+        "release_url": "https://github.com/ajfriesen/PokyPow/releases/tag/0.3.0",
+        "summary": "Downgrade ESPHome 2025.10.0"
+      }
+    }
+  ]
 }
