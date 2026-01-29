@@ -8,6 +8,10 @@ on:
   workflow_dispatch:
   release:
     types: [published]
+  workflow_run:
+    workflows: ["Update Manifest"]
+    types:
+      - completed
 
 permissions:
   contents: read
