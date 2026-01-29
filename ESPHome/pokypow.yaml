@@ -111,6 +111,10 @@ packages:
 http_request:
   timeout: 10s
 
+time:
+  - platform: sntp
+    id: sntp_time
+
 # Check for updates from the website
 update:
   - platform: http_request
