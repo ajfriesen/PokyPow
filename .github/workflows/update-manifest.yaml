@@ -1,0 +1,109 @@
+name: Update Manifest
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (tag, e.g. 0.4.0)'
+        required: true
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+jobs:
+  update-manifest:
+    name: Update Manifest
+    runs-on: ubuntu-latest
+    if: >
+      (github.event_name == 'workflow_dispatch') ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.event == 'release' && github.event.workflow_run.conclusion == 'success')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Determine Version
+        id: version
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            TAG="${{ inputs.version }}"
+          else
+            # Try to get tag from workflow_run head_branch
+            TAG="${{ github.event.workflow_run.head_branch }}"
+            # If empty, fallback to latest release
+            if [ -z "$TAG" ]; then
+               echo "Could not determine tag from workflow_run, fetching latest release..."
+               TAG=$(gh release view --json tagName -q .tagName)
+            fi
+          fi
+          echo "Target version: $TAG"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Generate Manifest
+        env:
+          VERSION: ${{ steps.version.outputs.tag }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Fetch release info
+          gh release view "$VERSION" --json tagName,url,body > release_info.json
+          
+          RELEASE_URL=$(jq -r .url release_info.json)
+          SUMMARY=$(jq -r .body release_info.json)
+          
+          DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/$VERSION/pokypow-esp32c3.ota.bin"
+          MD5_URL="https://github.com/${{ github.repository }}/releases/download/$VERSION/pokypow-esp32c3.ota.bin.md5"
+          
+          mkdir -p docs/docs/firmware
+          
+          echo "Fetching MD5 from $MD5_URL"
+          MD5=$(curl -f -L -s "$MD5_URL" | cut -d ' ' -f 1)
+          
+          if [ -z "$MD5" ]; then
+            echo "Error: Failed to fetch MD5 or file is empty."
+            exit 1
+          fi
+          
+          # Generate JSON
+          jq -n \
+            --arg version "$VERSION" \
+            --arg download_url "$DOWNLOAD_URL" \
+            --arg release_url "$RELEASE_URL" \
+            --arg md5 "$MD5" \
+            --arg summary "$SUMMARY" \
+            '{ 
+              name: "PokyPow",
+              version: $version,
+              funding_url: "https://github.com/sponsors/ajfriesen",
+              builds: [
+                {
+                  chipFamily: "ESP32-C3",
+                  ota: {
+                    md5: $md5,
+                    path: $download_url,
+                    release_url: $release_url,
+                    summary: $summary
+                  }
+                }
+              ]
+            }' > docs/docs/firmware/manifest.json
+          
+          cat docs/docs/firmware/manifest.json
+
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/docs/firmware/manifest.json
+          if git diff --staged --quiet; then
+            echo "No changes to manifest"
+          else
+            git commit -m "Update firmware manifest to ${{ steps.version.outputs.tag }}"
+            git push
+          fi
