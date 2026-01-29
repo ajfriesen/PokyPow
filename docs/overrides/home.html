@@ -507,25 +507,70 @@
                         display: none;
                         border-radius: 16px;
                     }
+                    /* Dots */
+                    .dot-container {
+                        text-align: center;
+                        position: absolute;
+                        bottom: 15px;
+                        width: 100%;
+                        z-index: 2;
+                    }
+                    .dot {
+                        cursor: pointer;
+                        height: 12px;
+                        width: 12px;
+                        margin: 0 4px;
+                        background-color: #bbb;
+                        border-radius: 50%;
+                        display: inline-block;
+                        transition: background-color 0.6s ease;
+                        box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+                    }
+                    .active, .dot:hover {
+                        background-color: #717171;
+                    }
                 </style>
                 <div class="slideshow-container">
                     <img class="mySlides fade" src="img/pokypow-in-pc.jpg" alt="PokyPow hardware installed inside a desktop computer case connected to motherboard and case">
                     <img class="mySlides fade" src="img/pokypow-home-assistant.png" alt="PokyPow Home Assistant Integration">
+                    
+                    <div class="dot-container">
+                        <span class="dot" onclick="currentSlide(1)"></span> 
+                        <span class="dot" onclick="currentSlide(2)"></span> 
+                    </div>
                 </div>
                 <script>
-                    let slideIndex = 0;
-                    showSlides();
+                    let slideIndex = 1;
+                    let slideTimer;
+                    showSlides(slideIndex);
 
-                    function showSlides() {
+                    function currentSlide(n) {
+                        clearTimeout(slideTimer);
+                        showSlides(slideIndex = n);
+                    }
+
+                    function showSlides(n) {
                         let i;
                         let slides = document.getElementsByClassName("mySlides");
+                        let dots = document.getElementsByClassName("dot");
+                        if (n === undefined) { 
+                            slideIndex++; 
+                        } else {
+                            slideIndex = n;
+                        }
+                        
+                        if (slideIndex > slides.length) {slideIndex = 1}
+                        if (slideIndex < 1) {slideIndex = slides.length}
+                        
                         for (i = 0; i < slides.length; i++) {
                             slides[i].style.display = "none";
                         }
-                        slideIndex++;
-                        if (slideIndex > slides.length) {slideIndex = 1}
+                        for (i = 0; i < dots.length; i++) {
+                            dots[i].className = dots[i].className.replace(" active", "");
+                        }
                         slides[slideIndex-1].style.display = "block";
-                        setTimeout(showSlides, 4000); 
+                        dots[slideIndex-1].className += " active";
+                        slideTimer = setTimeout(function() { showSlides(); }, 8000); 
                     }
                 </script>
             </div>
