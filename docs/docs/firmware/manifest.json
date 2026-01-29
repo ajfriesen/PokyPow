@@ -6,7 +6,7 @@
     {
       "chipFamily": "ESP32-C3",
       "ota": {
-        "md5": "72308e8179727faeceef1e41ed5b211b",
+        "md5": "a1066e6000ddc08a97fffecba2bf537f",
         "path": "https://github.com/ajfriesen/PokyPow/releases/download/0.4.2/pokypow-esp32c3.ota.bin",
         "release_url": "https://github.com/ajfriesen/PokyPow/releases/tag/0.4.2",
         "summary": "**Full Changelog**: https://github.com/ajfriesen/PokyPow/compare/0.4.0...0.4.2"
