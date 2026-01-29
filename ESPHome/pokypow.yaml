@@ -119,8 +119,3 @@ update:
     source: "https://pokypow.com/firmware/manifest.json"
     update_interval: 1min
 
-  - platform: http_request
-    id: firmware_update_beta
-    name: "Firmware Update (Beta)"
-    source: "https://pokypow.com/firmware/beta/manifest.json"
-    update_interval: 1min
