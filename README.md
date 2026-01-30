@@ -39,4 +39,10 @@ Now you can turn on/off your PC and check if it is running via Home Assistant.
 
 You can find all product documentation, related blog post on my dedicated [PokyPow Documentation](https://pokypow.com/docs).
 
+# Developer Docs
 
+Build:
+
+```
+docker run --rm --privileged -v "${PWD}":/config -it ghcr.io/esphome/esphome:2026.1.2 compile ESPHome/pokypow.yaml
+```
