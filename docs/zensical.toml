@@ -38,7 +38,8 @@ repo = "fontawesome/brands/github"
 #
 # Read more: https://zensical.org/docs/setup/basics/#copyright
 copyright = """
-Copyright &copy; 2026 Andrej Friesen
+Copyright &copy; 2026 Andrej Friesen  –
+<a href="#__consent">Change cookie settings</a>
 """
 
 # Zensical supports both implicit navigation and explicitly defined navigation.
