@@ -10,7 +10,7 @@ esphome:
 
   project:
     name: "ajfriesen.PokyPow"
-    version: "0.7.0"
+    version: "0.7.1"
 
   # Green light after boot
   on_boot:
