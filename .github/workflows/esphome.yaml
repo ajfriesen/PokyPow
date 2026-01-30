@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'ESPHome/**'
+      - .github/workflows/esphome.yaml
   pull_request:
     paths:
       - 'ESPHome/**'
