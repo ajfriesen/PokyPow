@@ -1,15 +1,15 @@
 {
   "name": "PokyPow",
-  "version": "0.6.2",
+  "version": "0.7.1",
   "funding_url": "https://github.com/sponsors/ajfriesen",
   "builds": [
     {
       "chipFamily": "ESP32-C3",
       "ota": {
-        "md5": "2f7701172385c5b920774e62116f9707",
-        "path": "https://github.com/ajfriesen/PokyPow/releases/download/0.6.2/pokypow-esp32c3.ota.bin",
-        "release_url": "https://github.com/ajfriesen/PokyPow/releases/tag/0.6.2",
-        "summary": "**Full Changelog**: https://github.com/ajfriesen/PokyPow/compare/0.6.1...0.6.2"
+        "md5": "8cf3f78cec372b323cdc3bfb2b17219f",
+        "path": "https://github.com/ajfriesen/PokyPow/releases/download/0.7.1/pokypow-esp32c3.ota.bin",
+        "release_url": "https://github.com/ajfriesen/PokyPow/releases/tag/0.7.1",
+        "summary": "**Full Changelog**: https://github.com/ajfriesen/PokyPow/compare/0.6.2...0.7.1"
       }
     }
   ]
