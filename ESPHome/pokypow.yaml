@@ -109,7 +109,8 @@ packages:
 
 # Enable downloading the manifest JSON
 http_request:
-  timeout: 10s
+  timeout: 30s
+  buffer_size: 4096
 
 time:
   - platform: sntp
