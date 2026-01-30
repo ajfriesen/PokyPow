@@ -15,7 +15,7 @@ sensor:
 
 switch:
   - platform: template
-    name: "Lock Power Button"
+    name: "Lock"
     id: lock_power_button_switch
     icon: "mdi:lock"
     turn_on_action:
