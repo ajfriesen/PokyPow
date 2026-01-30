@@ -6,8 +6,6 @@ on:
     paths:
       - 'docs/**'
   workflow_dispatch:
-  release:
-    types: [published]
   workflow_run:
     workflows: ["Update Manifest"]
     types:
