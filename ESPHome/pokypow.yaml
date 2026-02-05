@@ -89,6 +89,8 @@ esp32_improv:
   authorizer: none
 
 wifi:
+  output_power: 18.5db
+
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "PokyPow Hotspot"
@@ -121,7 +123,7 @@ time:
 update:
   - platform: http_request
     id: firmware_update_stable
-    name: "Firmware Update (Stable)"
+    name: "Firmware Update"
     source: "https://pokypow.com/firmware/manifest.json"
     update_interval: 1min
 
