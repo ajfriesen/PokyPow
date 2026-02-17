@@ -27,5 +27,5 @@ No complex tools are needed.
   src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"
 ></script>
 
-<esp-web-install-button manifest="https://pokypow-github-pages-proxy.andre-friesen.workers.dev/https://github.com/ajfriesen/PokyPow/releases/download/0.1.0/pokypow.manifest.json"></esp-web-install-button>
+<esp-web-install-button manifest="https://pokypow-github-pages-proxy.andre-friesen.workers.dev/https://github.com/ajfriesen/PokyPow/releases/download/0.6.2/pokypow.manifest.json"></esp-web-install-button>
 
